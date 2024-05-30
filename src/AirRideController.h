@@ -6,9 +6,10 @@
 class AirRideController {
 public:
     AirRideController(int frUpPin, int frDownPin, int flUpPin, int flDownPin, int rrUpPin, int rrDownPin, int rlUpPin, int rlDownPin,
-                      unsigned long timeout, int (*getFRPosition)(), int (*getFLPosition)(), int (*getRRPosition)(), int (*getRLPosition)(), int deadZone);
+                      unsigned long timeout, int getFRPosition, int getFLPosition, int getRRPosition, int getRLPosition, int deadZone);
 
     void moveTo(int frTarget, int flTarget, int rrTarget, int rlTarget);
+    void moveTo(int targetHeight);
     void update();
     void setDeadZone(int deadZone);
 
