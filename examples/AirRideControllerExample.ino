@@ -1,10 +1,5 @@
 #include <AirRideController.h>
 
-// Example getPosition functions
-int getFRPosition() { return analogRead(A0); }
-int getFLPosition() { return analogRead(A1); }
-int getRRPosition() { return analogRead(A2); }
-int getRLPosition() { return analogRead(A3); }
 
 // Define the pins for each quarter
 const int FR_UP_PIN = 2;
@@ -16,9 +11,16 @@ const int RR_DOWN_PIN = 7;
 const int RL_UP_PIN = 8;
 const int RL_DOWN_PIN = 9;
 
+
+
+const int FR_POSITION_PIN = HEIGHT_SENSOR_1;
+const int FL_POSITION_PIN = HEIGHT_SENSOR_2;
+const int RR_POSITION_PIN = HEIGHT_SENSOR_3;
+const int RL_POSITION_PIN = HEIGHT_SENSOR_4;
+
 // Create the AirRideController object
 AirRideController airRideController(FR_UP_PIN, FR_DOWN_PIN, FL_UP_PIN, FL_DOWN_PIN, RR_UP_PIN, RR_DOWN_PIN, RL_UP_PIN, RL_DOWN_PIN,
-                                    10000, getFRPosition, getFLPosition, getRRPosition, getRLPosition, 10);
+                                    10000, FR_POSITION_PIN, FL_POSITION_PIN, RR_POSITION_PIN, RL_POSITION_PIN, 10);
 
 void setup() {
     Serial.begin(9600);

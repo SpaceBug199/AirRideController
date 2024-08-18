@@ -10,19 +10,20 @@ public:
     void update();
     void moveTo(int targetPosition);
     void setDeadZone(int deadZone);
-    int getPosition(); c
+    int getPosition();
 
 private:
 
     int _upPin;
     int _downPin;
     unsigned long _timeout;
-    int (*_getPositionFunc)();
     int _deadZone;
     int _targetPosition;
     unsigned long _startMillis;
     bool _isMoving;
     int _moveDirection;
+    int _getPositionPin;
+
 
     void onComplete();  
     void stopMovement();

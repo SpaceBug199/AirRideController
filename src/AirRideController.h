@@ -5,10 +5,24 @@
 
 class AirRideController {
 public:
-    AirRideController(int frUpPin, int frDownPin, int flUpPin, int flDownPin, int rrUpPin, int rrDownPin, int rlUpPin, int rlDownPin,
-                      unsigned long timeout, int (*getFRPosition)(), int (*getFLPosition)(), int (*getRRPosition)(), int (*getRLPosition)(), int deadZone);
+    AirRideController(
+        int frUpPin,                // suspension control output pin
+        int frDownPin,              // suspension control output pin
+        int flUpPin,                // suspension control output pin
+        int flDownPin,              // suspension control output pin
+        int rrUpPin,                // suspension control output pin
+        int rrDownPin,              // suspension control output pin
+        int rlUpPin,                // suspension control output pin
+        int rlDownPin,              // suspension control output pin
+        unsigned long timeout,      // timeout to complete the movement
+        int getFRPosition,          // suspension position sensor
+        int getFLPosition,          // suspension position sensor
+        int getRRPosition,          // suspension position sensor
+        int getRLPosition,          // suspension position sensor
+        int deadZone);              // resting range of the system
 
     void moveTo(int frTarget, int flTarget, int rrTarget, int rlTarget);
+    void moveTo(int targetHeight);
     void update();
     void setDeadZone(int deadZone);
 
