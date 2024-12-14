@@ -1,5 +1,7 @@
 #ifndef POSITIONCONTROLLER_H
 #define POSITIONCONTROLLER_H
+#define UP_DIRECTION 1
+#define DOWN_DIRECTION -1
 
 #include <Arduino.h>
 

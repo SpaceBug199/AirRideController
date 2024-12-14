@@ -12,7 +12,7 @@ PositionController::PositionController(int upPin, int downPin, unsigned long tim
 }
 
 // Method to move the controller to a specified target position
-void PositionController::moveTo(int targetPosition) {
+void PositionController::moveTo(int targetPosition, bool invertAxis = false) {
     _targetPosition = targetPosition;
     int currentPosition = getPosition(); // Get the current position from the sensor
     
@@ -24,12 +24,14 @@ void PositionController::moveTo(int targetPosition) {
     }
 
     // Determine the direction of movement based on current and target positions
-    _moveDirection = (currentPosition < _targetPosition) ? 1 : -1;
+                    // XOR the expression with invertAxis variable to invert the direction of travel
+    _moveDirection = (!(currentPosition < _targetPosition) != !invertAxis) ? UP_DIRECTION : DOWN_DIRECTION;
+   
     _startMillis = millis(); // Record the start time for timeout checking
     _isMoving = true;
 
     // Set output pins to move in the correct direction
-    if (_moveDirection == 1) {
+    if (_moveDirection == UP_DIRECTION) {
         digitalWrite(_upPin, HIGH);
         digitalWrite(_downPin, LOW);
     } else {
