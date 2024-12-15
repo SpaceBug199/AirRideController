@@ -30,10 +30,19 @@ void AirRideController::moveTo(int targetHegith){
 }
 
 void AirRideController::update() {
+
     _frController.update();
     _flController.update();
     _rrController.update();
     _rlController.update();
+}
+
+void AirRideController::stopMovement(){
+    _frController.stopMovement();
+    _flController.stopMovement();
+    _rrContorller.stopMovement();
+    _rlController.stopMovement();
+
 }
 
 void AirRideController::setDeadZone(int deadZone) {
