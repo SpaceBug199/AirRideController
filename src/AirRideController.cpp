@@ -14,8 +14,15 @@ void AirRideController::moveTo(int frTarget, int flTarget, int rrTarget, int rlT
     _rlController.moveTo(rlTarget);
 }
 
+void AirRideController::moveTo(int frTarget, bool frInvert, int flTarget, bool flInvert, int rrTarget, bool rrInvert, int rlTarget, bool rlInvert) {
+    _frController.moveTo(frTarget, frInvert);
+    _flController.moveTo(flTarget, flInvert);
+    _rrController.moveTo(rrTarget, rrInvert);
+    _rlController.moveTo(rlTarget, rlInvert);
+}
+
 void AirRideController::moveTo(int targetHegith){
-    Serial.println(" MOVE TO STARTED !!!!!!!");
+    // Serial.println(" MOVE TO STARTED !!!!!!!");
     _frController.moveTo(targetHegith);
     _flController.moveTo(targetHegith);
     _rrController.moveTo(targetHegith);

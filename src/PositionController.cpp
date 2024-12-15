@@ -12,7 +12,7 @@ PositionController::PositionController(int upPin, int downPin, unsigned long tim
 }
 
 // Method to move the controller to a specified target position
-void PositionController::moveTo(int targetPosition, bool invertAxis = false) {
+void PositionController::moveTo(int targetPosition, bool invertDirection ) {
     _targetPosition = targetPosition;
     int currentPosition = getPosition(); // Get the current position from the sensor
     
@@ -25,7 +25,7 @@ void PositionController::moveTo(int targetPosition, bool invertAxis = false) {
 
     // Determine the direction of movement based on current and target positions
                     // XOR the expression with invertAxis variable to invert the direction of travel
-    _moveDirection = (!(currentPosition < _targetPosition) != !invertAxis) ? UP_DIRECTION : DOWN_DIRECTION;
+    _moveDirection = (!(currentPosition < _targetPosition) != !invertDirection) ? UP_DIRECTION : DOWN_DIRECTION;
    
     _startMillis = millis(); // Record the start time for timeout checking
     _isMoving = true;
@@ -40,6 +40,35 @@ void PositionController::moveTo(int targetPosition, bool invertAxis = false) {
     }
 }
 
+
+// Method to move the controller to a specified target position
+void PositionController::moveTo(int targetPosition ) {
+    _targetPosition = targetPosition;
+    int currentPosition = getPosition(); // Get the current position from the sensor
+    
+    // If the difference between the current and target positions is within the dead zone, stop moving
+    if (abs(currentPosition - _targetPosition) <= _deadZone) {
+        _isMoving = false;
+        onComplete();
+        return;
+    }
+
+    // Determine the direction of movement based on current and target positions
+                    // XOR the expression with invertAxis variable to invert the direction of travel
+    _moveDirection = ((currentPosition < _targetPosition) ) ? UP_DIRECTION : DOWN_DIRECTION;
+   
+    _startMillis = millis(); // Record the start time for timeout checking
+    _isMoving = true;
+
+    // Set output pins to move in the correct direction
+    if (_moveDirection == UP_DIRECTION) {
+        digitalWrite(_upPin, HIGH);
+        digitalWrite(_downPin, LOW);
+    } else {
+        digitalWrite(_upPin, LOW);
+        digitalWrite(_downPin, HIGH);
+    }
+}
 // Method to update the controller's status and check if movement is complete
 void PositionController::update() {
     Serial.println("position controller update");

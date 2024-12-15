@@ -11,6 +11,7 @@ public:
 
     void update();
     void moveTo(int targetPosition);
+    void moveTo(int targetPosition, bool invertDirection);
     void setDeadZone(int deadZone);
     int getPosition();
 

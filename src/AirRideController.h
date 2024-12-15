@@ -22,6 +22,7 @@ public:
         int deadZone);              // resting range of the system
 
     void moveTo(int frTarget, int flTarget, int rrTarget, int rlTarget);
+    void moveTo(int frTarget, bool frInvert, int flTarget, bool flInvert, int rrTarget, bool rrInvert, int rlTarget, bool rlInvert);
     void moveTo(int targetHeight);
     void update();
     void setDeadZone(int deadZone);
