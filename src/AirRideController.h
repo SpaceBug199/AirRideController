@@ -24,6 +24,7 @@ public:
     void moveTo(int frTarget, int flTarget, int rrTarget, int rlTarget);
     void moveTo(int frTarget, bool frInvert, int flTarget, bool flInvert, int rrTarget, bool rrInvert, int rlTarget, bool rlInvert);
     void moveTo(int targetHeight);
+    void stopMovement();
     void update();
     void setDeadZone(int deadZone);
 

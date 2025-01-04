@@ -38,10 +38,10 @@ void AirRideController::update() {
 }
 
 void AirRideController::stopMovement(){
-    _frController.stopMovement();
-    _flController.stopMovement();
-    _rrContorller.stopMovement();
-    _rlController.stopMovement();
+    // _frController.stopMovement();
+    // _flController.stopMovement();
+    // _rrContorller.stopMovement();
+    // _rlController.stopMovement();
 
 }
 
